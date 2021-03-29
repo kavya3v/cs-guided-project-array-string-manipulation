@@ -20,6 +20,31 @@ Output: -1
 Explanation:
 There is no index that satisfies the conditions in the problem statement.
 """
-def pivot_index(nums):
+def pivot_index_old(nums): #this is n^2
     # Your code here
+    for i in range(len(nums)):
+        left=sum(nums[0:i])
+        right=sum(nums[i+1::])
+        if left == right:
+            return i
+    return -1
+   
+def pivot_index(nums):
+    left=0
+    right=sum(nums[1:])
+    for i in range(len(nums)):
+        if left == right:
+           return i
+        else:
+            left += nums[i]
+            if (i+1) == len(nums):
+                right -= 0
+            else:
+                right -= nums[i+1]
+    return -1
+        
+
+
+print(pivot_index([1,7,3,6,5,6]))
+print(pivot_index([1,2,3]))
 
